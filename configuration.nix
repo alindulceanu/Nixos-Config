@@ -8,9 +8,13 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./system/app/git/git.nix
      # ./leftwm.nix
     ];
+
+  # SPICE SETUP
+  services.spice-vdagentd.enable = true;
+  services.udev.packages = with pkgs-stable; [spice-vdagent];
+  services.dbus.enable = true;
 
   # Bootloader.
   boot.loader.grub.enable = true;
@@ -125,6 +129,7 @@
    xclip
    kitty
    waybar
+   spice-vdagent
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
