@@ -8,7 +8,17 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-     # ./leftwm.nix
+      ./system/app/flatpak.nix
+      ./system/app/virt.nix
+      ./system/hardware/bluetooth.nix
+      ./system/hardware/gpu.nix
+      ./system/hardware/kernel.nix
+      ./system/hardware/systemd.nix
+      ./system/hardware/time.nix
+      ./system/security/automount.nix
+      ./system/security/firewall.nix
+      ./system/security/gpg.nix
+      ./system/security/sshd.nix
     ];
 
   # SPICE SETUP
@@ -20,9 +30,6 @@
   boot.loader.grub.enable = true;
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
-
-  # Use latest kernel.
-  boot.kernelPackages = pkgs-stable.linuxPackages_latest;
 
   boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
   # Setup keyfile
@@ -70,7 +77,8 @@
   services.displayManager.sddm.enable = true;
   # services.desktopManager.plasma6.enable = true;
 
-  programs.hyprland.enable = true;
+  # programs.hyprland.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -101,7 +109,7 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.alin = {
+  users.users.${userSettings.username} = {
     isNormalUser = true;
     description = "alin";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -130,6 +138,7 @@
    kitty
    waybar
    spice-vdagent
+   tree
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
