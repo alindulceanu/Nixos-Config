@@ -11,7 +11,7 @@
       ./system/app/flatpak.nix
       ./system/app/virt.nix
       ./system/hardware/bluetooth.nix
-      ./system/hardware/gpu.nix
+      # ./system/hardware/gpu.nix
       ./system/hardware/kernel.nix
       ./system/hardware/systemd.nix
       ./system/hardware/time.nix
@@ -19,6 +19,7 @@
       ./system/security/firewall.nix
       ./system/security/gpg.nix
       ./system/security/sshd.nix
+      # ./system/style/stylix.nix
     ];
 
   # SPICE SETUP

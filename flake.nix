@@ -19,13 +19,15 @@
       name = "Alin";
       email = "alin.dulceanu@gmail.com";
       dotfilesDir = "~/.dotfiles";
-      theme = ""; # to be implemented
+      theme = "gruvbox-dark-medium"; # to be implemented
+      themePolarity = "dark";
       wm = "hyprland";
       displayServer = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
       terminal = "alacritty";
       font = "Intel One Mono";
       fontPkg = pkgs-stable.intel-one-mono;
       editor = "neovim";
+      browser = "firefox";
     };
 
     pkgs = pkgs-stable;
@@ -53,7 +55,10 @@
     nixosConfigurations = {
       home-pc = lib-stable.nixosSystem {
 	system = systemSettings.system;
-	modules = [ ./configuration.nix ];
+	modules = [ 
+	  ./configuration.nix
+	  inputs.stylix.nixosModules.stylix
+	];
 	specialArgs = {
 	  inherit systemSettings;
 	  inherit userSettings;
@@ -84,6 +89,7 @@
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/release-25.05";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    stylix.url = "github:danth/stylix/release-25.05";
   };
 }
 

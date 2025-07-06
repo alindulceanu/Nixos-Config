@@ -3,6 +3,7 @@
 {
   imports = [
     ./user/app/git/git.nix
+    ./system/style/stylix.nix
   ];
 
   home.username = userSettings.username;
@@ -10,8 +11,19 @@
 
   home.stateVersion = "25.05";
 
-  home.packages = [
-    
+  home.packages = with pkgs; [
+    zsh
+    syncthing
+    libreoffice
+    spotify
+    discord
+    gfn-electron
+    teams-for-linux
+    adwaita-icon-theme
+    zapzap
+    nautilus
+    vlc
+    wine
   ];
 
   home.file = {
@@ -20,9 +32,35 @@
 
   
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    EDITOR = userSettings.editor;
+    TERM = userSettings.terminal;
+    BROWSER = userSettings.browser;
   };
 
+  xdg.enable = true;
+  xdg.userDirs = {
+    enable = true;
+    createDirectories = true;
+    music = "${config.home.homeDirectory}/Media/Music";
+    videos = "${config.home.homeDirectory}/Media/Videos";
+    pictures = "${config.home.homeDirectory}/Media/Pictures";
+    download = "${config.home.homeDirectory}/Downloads";
+    documents = "${config.home.homeDirectory}/Documents";
+
+    desktop = null;
+    publicShare = null;
+
+    extraConfig = {
+      XDG_DOTFILES_DIR = "${config.home.homeDirectory}/.dotfiles";
+      XDG_ARCHIVE_DIR = "${config.home.homeDirectory}/Archive";
+      XDG_VM_DIR = "${config.home.homeDirectory}/Machines";
+    };
+  };
+
+  gtk.iconTheme = {
+    package = pkgs.papirus-icon-theme;
+    name = if (config.stylix.polarity == "dark") then "Papirus-Dark" else "Papirus-Light";
+  };
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 }
