@@ -3,7 +3,7 @@
 {
   imports = [
     ./user/app/git/git.nix
-    ./system/style/stylix.nix
+    ./user/style/stylix.nix
   ];
 
   home.username = userSettings.username;
@@ -24,6 +24,8 @@
     nautilus
     vlc
     wine
+    xfce.xfconf        # Provides `xfconf-query`
+    xfce.xfdesktop  
   ];
 
   home.file = {
