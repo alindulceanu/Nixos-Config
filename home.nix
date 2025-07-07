@@ -4,6 +4,7 @@
   imports = [
     ./user/app/git/git.nix
     ./user/style/stylix.nix
+    ./user/app/nixvim/nixvim.nix
   ];
 
   home.username = userSettings.username;

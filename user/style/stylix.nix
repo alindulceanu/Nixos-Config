@@ -6,10 +6,15 @@ let
   backgroundSha256 = builtins.readFile ("${inputs.self}/themes/sha256.txt");
 
 in {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeModules.stylix ];
+
+  
 
   stylix = {
     enable = true;
+
+    targets.nixvim.enable = false;
+
     image = pkgs.fetchurl {
       url = backgroundUrl;
       sha256 = backgroundSha256;

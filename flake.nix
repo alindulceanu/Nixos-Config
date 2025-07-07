@@ -5,6 +5,7 @@
   let
     systemSettings = {
       system = "x86_64-linux";
+      isLaptop = false;
       hostname = "home-pc";
       profile = "personal"; # to be implemented
       timezone = "Europe/Bucharest";
@@ -19,13 +20,13 @@
       name = "Alin";
       email = "alin.dulceanu@gmail.com";
       dotfilesDir = "~/.dotfiles";
-      theme = "gruvbox-dark-medium"; # to be implemented
+      theme = "ashes"; # to be implemented
       themePolarity = "dark";
       wm = "hyprland";
       displayServer = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-      terminal = "alacritty";
-      font = "Intel One Mono";
-      fontPkg = pkgs-stable.intel-one-mono;
+      terminal = "kitty";
+      font = "FiraCode Nerd Font";
+      fontPkg = pkgs-stable.nerd-fonts.fira-code;
       editor = "neovim";
       browser = "firefox";
     };
@@ -87,9 +88,15 @@
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/release-25.05";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    home-manager = {
+      url = "github:nix-community/home-manager/release-25.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
     stylix.url = "github:danth/stylix/release-25.05";
+    nixvim = {
+      url = "github:nix-community/nixvim/nixos-25.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
   };
 }
 
