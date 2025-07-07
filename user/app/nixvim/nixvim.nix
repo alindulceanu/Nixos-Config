@@ -27,7 +27,17 @@ in
     plugins = {
       lualine.enable = true;
       nvim-surround.enable = true;
-      neoscroll.enable = true;
+      neoscroll = { 
+        enable = true; 
+        settings = {
+          hide_cursor = true;
+          stop_eof = true;
+          respect_scrolloff = true;
+          cursor_scrolls_alone = true;
+          easing_function = "'sine'";
+          performance_mode = false;
+        };
+      };
       modicator.enable = true;
       git-conflict.enable = true;
       oil-git-status.enable = true;

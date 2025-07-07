@@ -251,4 +251,31 @@
       silent = true;
     };
   }
+  {
+    mode = "n";
+    key = "<leader>cp";
+    action = "<cmd>CccPick<CR>";
+    options = {
+      desc = "Pick a color";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>cc";
+    action = "<cmd>CccConvert<CR>";
+    options = {
+      desc = "Convert color under cursor";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>cf";
+    action = "<cmd>CccHighlighterToggle<CR>";
+    options = {
+      desc = "Toggle color highlighter";
+      silent = true;
+    };
+  }
 ]
