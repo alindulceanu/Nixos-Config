@@ -29,13 +29,7 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Mount your EFI partition at /boot (adjust device if needed)
-  fileSystems."/boot" = {
-    device = "/dev/disk/by-partlabel/ESP";  # or "/dev/sdXY" for your EFI partition
-    fsType = "vfat";
-  };
-
-  # Disable legacy BIOS grub install
+   # Disable legacy BIOS grub install
   boot.loader.grub.enable = false;
 
 #  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
