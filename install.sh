@@ -20,7 +20,7 @@ if [ "$CONFIRM" != "yes" ]; then
 fi
 
 echo "Partitioning Disk"
-parted --script "$DISK" \
+sudo parted --script "$DISK" \
   mklabel gpt \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on \
@@ -37,11 +37,11 @@ mkfs.ext4 -F "${ROOT_PART}"
 mkfs.ext4 -F "${HOME_PART}"
 
 echo "Mounting partitions"
-mount "${ROOT_PART}" "${MOUNT_POINT}"
+sudo mount "${ROOT_PART}" "${MOUNT_POINT}"
 mkdir -p "${MOUNT_POINT}/boot"
 mkdir -p "${MOUNT_POINT}/home"
-mount "${EFI_PART}" "${MOUNT_POINT}/boot"
-mount "${HOME_PART}" "${MOUNT_POINT}/home"
+sudo mount "${EFI_PART}" "${MOUNT_POINT}/boot"
+sudo mount "${HOME_PART}" "${MOUNT_POINT}/home"
 
 echo "Enter Hostname"
 read -r HOSTNAME
