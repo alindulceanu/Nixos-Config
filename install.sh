@@ -24,24 +24,24 @@ sudo parted --script "$DISK" \
   mklabel gpt \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on \
-  mkpart primary ext4 512MiB 100GiB \
-  mkpart primary ext4 100GiB 100%
+  mkpart primary ext4 512MiB 100% \
+  # mkpart primary ext4 100GiB 100%
 
 EFI_PART="${DISK}1"
 ROOT_PART="${DISK}2"
-HOME_PART="${DISK}3"
+#HOME_PART="${DISK}3"
 
 echo "Formatting partitions!"
 mkfs.fat -F32 "${EFI_PART}"
 mkfs.ext4 -F "${ROOT_PART}"
-mkfs.ext4 -F "${HOME_PART}"
+#mkfs.ext4 -F "${HOME_PART}"
 
 echo "Mounting partitions"
 sudo mount "${ROOT_PART}" "${MOUNT_POINT}"
 mkdir -p "${MOUNT_POINT}/boot"
 mkdir -p "${MOUNT_POINT}/home"
 sudo mount "${EFI_PART}" "${MOUNT_POINT}/boot"
-sudo mount "${HOME_PART}" "${MOUNT_POINT}/home"
+#sudo mount "${HOME_PART}" "${MOUNT_POINT}/home"
 
 echo "Enter Hostname"
 read -r HOSTNAME
