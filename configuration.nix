@@ -138,6 +138,7 @@
    xclip
    waybar
    spice-vdagent
+   sudo
    tree
   ];
 
