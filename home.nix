@@ -5,6 +5,9 @@
     ./user/app/git/git.nix
     ./user/style/stylix.nix
     ./user/app/nixvim/nixvim.nix
+    ./user/app/shell/shell.nix
+    ./user/app/terminal/${userSettings.terminal}.nix
+    ./user/wm/${userSettings.wm}.nix
   ];
 
   home.username = userSettings.username;
@@ -13,6 +16,7 @@
   home.stateVersion = "25.05";
 
   home.packages = with pkgs; [
+    fastfetch
     zsh
     syncthing
     libreoffice
@@ -27,6 +31,8 @@
     wine
     xfce.xfconf        # Provides `xfconf-query`
     xfce.xfdesktop  
+    keepassxc
+    keepmenu
   ];
 
   home.file = {

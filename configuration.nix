@@ -19,7 +19,6 @@
       ./system/security/firewall.nix
       ./system/security/gpg.nix
       ./system/security/sshd.nix
-      # ./system/style/stylix.nix
     ];
 
   # SPICE SETUP
@@ -74,13 +73,9 @@
   # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
-  # services.desktopManager.plasma6.enable = true;
 
-  # programs.hyprland.enable = true;
-  services.xserver.desktopManager.xfce.enable = true;
-
+  programs.hyprland.enable = userSettings.wm == "hyprland";
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "ro";
@@ -114,13 +109,10 @@
     isNormalUser = true;
     description = "alin";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs-stable; [
-    #  kdePackages.kate
-    #  thunderbird
-	leftwm
-	fastfetch
-    ];
+    shell = pkgs-stable.zsh;
   };
+
+  programs.zsh.enable = true;
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -133,9 +125,7 @@
   environment.systemPackages = with pkgs-stable; [
    wget
    git
-   xterm
    xclip
-   kitty
    waybar
    spice-vdagent
    tree

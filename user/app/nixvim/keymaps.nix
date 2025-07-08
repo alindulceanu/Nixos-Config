@@ -1,7 +1,7 @@
 [
   {
     mode = "n";
-    key = "gd";
+    key = "<leader>ld";
     action = "<cmd>Lspsaga goto_definition<cr>";
     options = {
       desc = "Goto definition of highlighted item";
@@ -10,7 +10,7 @@
   }
   {
     mode = "n";
-    key = "gD";
+    key = "<leader>lD";
     action = "<cmd>Lspsaga goto_type_definition<cr>";
     options = {
       desc = "Goto type definition of highlighted item";
@@ -19,7 +19,7 @@
   }
   {
     mode = "n";
-    key = "K";
+    key = "<leader>lk";
     action = "<cmd>Lspsaga hover_doc<CR>";
     options = {
       desc = "Show docs for hovered item.";
