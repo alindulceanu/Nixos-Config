@@ -70,6 +70,10 @@ sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "$MOUNT_POINT/home/$USE
 echo "Building the flake"
 nixos-install --root /mnt --flake "/$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USERNAME"
 
+echo "Enter password for user $USERNAME"
+read -s PASSWORD
+echo "$USERNAME:$PASSWORD" | sudo chroot "$MOUNT_POINT" chpasswd
+
 echo "Installing home-manager and building the home config"
 nixos-enter --root "$MOUNT_POINT" -- \
   sudo -u "$USERNAME" nix run github:nix-community/home-manager/release-25.05 \
