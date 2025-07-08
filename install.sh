@@ -20,19 +20,20 @@ if [ "$CONFIRM" != "yes" ]; then
 fi
 
 echo "Partitioning Disk"
-parted --script "$DISK" \
+parted --script "/dev/$DISK" \
   mklabel gpt \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on \
   mkpart primary ext4 512MiB 100% \
   # mkpart primary ext4 100GiB 100%
 
-EFI_PART="${DISK}1"
-ROOT_PART="${DISK}2"
-#HOME_PART="${DISK}3"
+EFI_PART="/dev/${DISK}1"
+ROOT_PART="/dev/${DISK}2"
+#HOME_PART="/dev/${DISK}3"
 
 echo "Formatting partitions!"
 mkfs.fat -F32 "${EFI_PART}"
+parted "/dev/$DISK" name 1 esp
 mkfs.ext4 -F "${ROOT_PART}"
 #mkfs.ext4 -F "${HOME_PART}"
 
