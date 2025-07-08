@@ -67,7 +67,7 @@ sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "$MOUNT_POINT/home/$USE
 #$EDITOR $MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix
 
 echo "Building the flake"
-nixos-rebuild switch --flake "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR" --root "$MOUNT_POINT"
+nixos-enter --root "$MOUNT_POINT" -- nixos-rebuild switch --flake "/home/$USERNAME/$SCRIPT_DIR"
 
 echo "Installing home-manager and building the home config"
 nixos-enter --root "$MOUNT_POINT" -- \
