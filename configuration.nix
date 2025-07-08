@@ -31,16 +31,16 @@
   boot.loader.grub.device = "/dev/vda";
   boot.loader.grub.useOSProber = true;
 
-  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
+#  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
   # Setup keyfile
-  boot.initrd.secrets = {
-    "/boot/crypto_keyfile.bin" = null;
-  };
+#  boot.initrd.secrets = {
+#    "/boot/crypto_keyfile.bin" = null;
+ # };
 
-  boot.loader.grub.enableCryptodisk = true;
+#  boot.loader.grub.enableCryptodisk = true;
 
-  boot.initrd.luks.devices."luks-b023ebc7-e9c5-48d6-b8cb-9d4a992342bc".keyFile = "/boot/crypto_keyfile.bin";
-  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".keyFile = "/boot/crypto_keyfile.bin";
+#  boot.initrd.luks.devices."luks-b023ebc7-e9c5-48d6-b8cb-9d4a992342bc".keyFile = "/boot/crypto_keyfile.bin";
+#  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".keyFile = "/boot/crypto_keyfile.bin";
   networking.hostName = systemSettings.hostname; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
