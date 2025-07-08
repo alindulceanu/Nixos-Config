@@ -72,7 +72,7 @@ nixos-install --root /mnt --flake "/$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USE
 
 echo "Enter password for user $USERNAME"
 read -s PASSWORD
-echo "$USERNAME:$PASSWORD" | sudo chroot "$MOUNT_POINT" chpasswd
+echo "$USERNAME:$PASSWORD" | sudo chroot "$MOUNT_POINT" passwd "$USERNAME"
 
 echo "Installing home-manager and building the home config"
 nixos-enter --root "$MOUNT_POINT" -- \
