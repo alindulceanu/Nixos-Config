@@ -26,11 +26,16 @@
   services.dbus.enable = true;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
+  boot.loader.systemd-boot.enable = false;
   boot.loader.efi.canTouchEfiVariables = true;
 
-   # Disable legacy BIOS grub install
-  boot.loader.grub.enable = false;
+ 
+  boot.loader.grub = {
+    enable = true;
+    efiSupport = true;
+    device = "nodev";
+    useOSProber = true;
+  }
 
 #  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
   # Setup keyfile
@@ -108,10 +113,14 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.${userSettings.username} = {
     isNormalUser = true;
-    description = "alin";
+    description = "${userSettings.username}";
     extraGroups = [ "networkmanager" "wheel" ];
     shell = pkgs-stable.zsh;
   };
+
+  security.sudo.enable = true;
+  security.sudo.wheelNeedsPassword = true;
+
 
   programs.zsh.enable = true;
 
