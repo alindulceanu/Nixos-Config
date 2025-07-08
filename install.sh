@@ -74,8 +74,4 @@ echo "Enter password for user $USERNAME"
 nixos-enter --root /mnt -- /run/current-system/sw/bin/passwd $USERNAME
 
 echo "Installing home-manager and building the home config"
-nixos-enter --root "$MOUNT_POINT" -- \
-  sudo -u "$USERNAME" nix run github:nix-community/home-manager/release-25.05 \
-  --extra-experimental-features nix-command \
-  --extra-experimental-features flakes \
-  -- switch --flake "/home/$USERNAME/$SCRIPT_DIR"
+nix run home-manager/release-25.05 --extra-experimental-features nix-command --extra-experimental-features flakes -- switch --flake $MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USERNAME;
