@@ -54,7 +54,7 @@
 
   in {
     nixosConfigurations = {
-      home-pc = lib-stable.nixosSystem {
+      "${systemSettings.hostname}" = lib-stable.nixosSystem {
 	system = systemSettings.system;
 	modules = [ 
 	  ./configuration.nix
@@ -71,7 +71,7 @@
     };
 
     homeConfigurations = {
-      alin = inputs.home-manager.lib.homeManagerConfiguration {
+      "${userSettings.username}" = inputs.home-manager.lib.homeManagerConfiguration {
 	inherit pkgs;
 	modules = [
 	  ./home.nix
