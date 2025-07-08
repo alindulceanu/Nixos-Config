@@ -54,7 +54,7 @@
 
   in {
     nixosConfigurations = {
-      "${systemSettings.hostname}" = lib-stable.nixosSystem {
+      "${userSettings.username}" = lib-stable.nixosSystem {
 	system = systemSettings.system;
 	modules = [ 
 	  ./configuration.nix
