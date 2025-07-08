@@ -52,7 +52,7 @@ read -r USERNAME
 mkdir -p "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 
 echo "Pulling configurations"
-cp -r ./nixos-config/* "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+cp -rT ./nixos-config/* "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 
 echo "Generating hardware config"
 nixos-generate-config --root "${MOUNT_POINT}"
