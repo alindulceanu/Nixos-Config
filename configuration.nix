@@ -35,7 +35,7 @@
     efiSupport = true;
     device = "nodev";
     useOSProber = true;
-  }
+  };
 
 #  boot.initrd.luks.devices."luks-bd5ad866-7f14-464b-acf9-b319bd2c7cd6".device = "/dev/disk/by-uuid/bd5ad866-7f14-464b-acf9-b319bd2c7cd6";
   # Setup keyfile
