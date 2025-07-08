@@ -20,7 +20,7 @@ if [ "$CONFIRM" != "yes" ]; then
 fi
 
 echo "Partitioning Disk"
-sudo parted --script "$DISK" \
+parted --script "$DISK" \
   mklabel gpt \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on \
@@ -51,7 +51,7 @@ read -r USERNAME
 mkdir -p "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 
 echo "Pulling configurations"
-git clone "${REPO_URL}" "${MOUNT_POINT}/home/${USERNAME}/${SCRIPT_DIR}"
+cp nixos-config/* "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 
 echo "Generating hardware config"
 nixos-generate-config --root "${MOUNT_POINT}"
@@ -60,11 +60,11 @@ cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERN
 sed -i "s/hostname = \".*\";/hostname = \"$HOSTNAME\";/" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix"
 sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix"
 
-if [ -z "$EDITOR" ]; then
-  EDITOR=nano;
-fi
+#if [ -z "$EDITOR" ]; then
+#  EDITOR=nano;
+#fi
 
-$EDITOR $MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix
+#$EDITOR $MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix
 
 echo "Building the flake"
 nixos-rebuild switch --flake "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR" --root "$MOUNT_POINT"
