@@ -82,6 +82,7 @@
   services.displayManager.sddm.enable = true;
 
   programs.hyprland.enable = userSettings.wm == "hyprland";
+  services.desktopManager.cosmic.enable = true;
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "ro";

@@ -22,7 +22,7 @@
       dotfilesDir = "~/.dotfiles";
       theme = "ashes"; # to be implemented
       themePolarity = "dark";
-      wm = "hyprland";
+      wm = "cosmic";
       displayServer = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
       terminal = "kitty";
       font = "FiraCode Nerd Font";
@@ -54,7 +54,7 @@
 
   in {
     nixosConfigurations = {
-      "${userSettings.username}" = lib-stable.nixosSystem {
+      "${systemSettings.hostname}" = lib-stable.nixosSystem {
 	system = systemSettings.system;
 	modules = [ 
 	  ./configuration.nix
