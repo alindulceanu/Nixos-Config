@@ -77,6 +77,13 @@ echo "Enter Username"
 read -r USERNAME
 mkdir -p "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 
+cat <<EOF > $MOUNT_POINT/etc/nixos/user.nix
+{
+  username = "$USERNAME";
+  hostname = "$HOSTNAME";
+}
+EOF
+
 clear
 echo "Pulling configurations"
 cp -r ./nixos-config/* "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
