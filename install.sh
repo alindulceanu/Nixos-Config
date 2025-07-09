@@ -31,6 +31,7 @@ parted --script "/dev/$DISK" \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on
 
+sleep 3
 if [ $HOME_PART == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
