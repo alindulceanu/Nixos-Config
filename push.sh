@@ -10,3 +10,6 @@ read -r MESSAGE
 
 git commit -m "${MESSAGE}"
 git push
+
+git apply ~/user-patch.patch
+mv ~/hardware-configuration.nix .

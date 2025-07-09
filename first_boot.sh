@@ -8,6 +8,9 @@ clear
 cat ~/.ssh/id_ed25519.pub
 echo "Please add this key to github account"
 read -n 1 -s -r -p "Press any key to continue..."
+git remote remove origin
+git remote add origin git@github.com:alin-dulceanu/Nixos-Config.git
+git fetch --set-upstream origin main:main
 
 home-manager switch --flake .
 
