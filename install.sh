@@ -76,31 +76,25 @@ clear
 echo "Enter Username"
 read -r USERNAME
 mkdir -p "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+sed -i "s/hostname = \".*\";/hostname = \"$HOSTNAME\";/" "nixos-config/flake.nix"
+sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "nixos-config/flake.nix"
 
-cat <<EOF > $MOUNT_POINT/etc/nixos/user.nix
-{
-  username = "$USERNAME";
-  hostname = "$HOSTNAME";
-}
-EOF
+cd nixos-config
+git diff > user-patch.patch
+cd ../
 
 clear
 echo "Pulling configurations"
-cp -r ./nixos-config/* "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+cp -r ./nixos-config/. "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+mv "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/user-patch.patch" "$MOUNT_POINT/home/$USERNAME/"
 
 clear
 echo "Generating hardware config"
 nixos-generate-config --root "${MOUNT_POINT}"
 cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+cd "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+git add .
 
-sed -i "s/hostname = \".*\";/hostname = \"$HOSTNAME\";/" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix"
-sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix"
-
-#if [ -z "$EDITOR" ]; then
-#  EDITOR=nano;
-#fi
-
-#$EDITOR $MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/flake.nix
 
 clear
 echo "Building the flake"
