@@ -8,6 +8,7 @@
     ./user/app/shell/shell.nix
     ./user/app/terminal/${userSettings.terminal}.nix
     # ./user/wm/${userSettings.wm}.nix
+    ./user/app/firefox/firefox.nix
   ];
 
   home.username = userSettings.username;
