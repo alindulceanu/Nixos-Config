@@ -7,6 +7,9 @@ MOUNT_POINT="/mnt"
 
 echo "Welcome to my nixos installer!"
 
+sleep 1
+
+clear
 lsblk
 echo "Enter target disk"
 read -r DISK
@@ -31,7 +34,10 @@ parted --script "/dev/$DISK" \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on
 
-sleep 3
+sleep 2
+partprobe "/dev/$DISK" || true
+udevadm settle
+
 if [ $HOME_PART == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
