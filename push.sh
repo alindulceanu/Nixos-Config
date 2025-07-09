@@ -9,7 +9,7 @@ echo "Commit message:"
 read -r MESSAGE
 
 git commit -m "${MESSAGE}"
-git push
+git push --set-upstream origin main:main
 
 git apply ~/user-patch.patch
 mv ~/hardware-configuration.nix .
