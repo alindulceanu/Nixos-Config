@@ -16,7 +16,7 @@ read -r DISK
 
 clear
 echo "Separate home partition? (yes/no)"
-read -r HOME_PART
+read -r HOME_PART_CONFIRM
 
 clear
 echo "This erases ALL data from drive, are you sure? (yes/no)"
@@ -38,7 +38,7 @@ sleep 2
 partprobe "/dev/$DISK" || true
 udevadm settle
 
-if [ $HOME_PART == "yes" ]; then
+if [ $HOME_PART_CONFIRM == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
     mkpart primary ext4 100GiB 100%
@@ -64,7 +64,7 @@ mkdir -p "${MOUNT_POINT}/boot"
 mkdir -p "${MOUNT_POINT}/home"
 mount "${EFI_PART}" "${MOUNT_POINT}/boot"
 
-if [ $HOME_PART == "yes" ]; then
+if [ $HOME_PART_CONFIRM == "yes" ]; then
   mount "${HOME_PART}" "${MOUNT_POINT}/home"
 fi
 
