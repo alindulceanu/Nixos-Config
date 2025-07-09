@@ -7,7 +7,7 @@
     ./user/app/nixvim/nixvim.nix
     ./user/app/shell/shell.nix
     ./user/app/terminal/${userSettings.terminal}.nix
-    ./user/wm/${userSettings.wm}.nix
+    # ./user/wm/${userSettings.wm}.nix
   ];
 
   home.username = userSettings.username;
