@@ -42,7 +42,7 @@ if [ $HOME_PART == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
     mkpart primary ext4 100GiB 100%
-  HOME_PART="/dev/$DISK3"
+  HOME_PART="/dev/${DISK}3"
   mkfs.ext4 -F "$HOME_PART"
 else
   parted --script "/dev/$DISK" \
