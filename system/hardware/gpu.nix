@@ -1,24 +1,30 @@
-{ pkgs-stable, ...}:
+{ lib, config, pkgs-stable, ... }:
 {
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  options = {
+    gpu.enable = lib.mkEnableOption "enables gpu related software";
+  };
 
-  hardware.opengl.extraPackages = with pkgs-stable; [
-    vaapiVdpau
-    libvdpau
-    mesa.drivers
-  ];
+  config = lib.mkIf config.gpu.enable {
+    hardware.opengl.enable = true;
+    hardware.opengl.driSupport = true;
+    hardware.opengl.driSupport32Bit = true;
 
-  hardware.opengl.extraPackages32 = with pkgs-stable; [
-    libva
-  ];
+    hardware.opengl.extraPackages = with pkgs-stable; [
+      vaapiVdpau
+      libvdpau
+      mesa.drivers
+    ];
 
-  # Vulkan drivers
-  hardware.opengl.setLdLibraryPath = true;
-  environment.systemPackages = with pkgs-stable; [
-    vulkan-tools  # includes vulkaninfo
-    mesa          # includes both OpenGL and Vulkan drivers for most GPUs
-  ];
+    hardware.opengl.extraPackages32 = with pkgs-stable; [
+      libva
+    ];
+
+    # Vulkan drivers
+    hardware.opengl.setLdLibraryPath = true;
+    environment.systemPackages = with pkgs-stable; [
+      vulkan-tools  # includes vulkaninfo
+      mesa          # includes both OpenGL and Vulkan drivers for most GPUs
+    ];
+  };
 }
 

@@ -1,5 +1,11 @@
-{ ... }:
+{ lib, config, ... }:
 {
-  hardware.bluetooth.enable = true;
-  services.blueman.enable = true;
+  options = {
+    bluetooth.enable = lib.mkEnableOption "enables bluetooth";
+  };
+
+  config = lib.mkIf config.bluetooth.enable {
+    hardware.bluetooth.enable = true;
+    services.blueman.enable = true;
+  };
 }

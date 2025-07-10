@@ -1,13 +1,19 @@
-{ config, pkgs-stable, ... }:
+{ config, lib, pkgs-stable, ... }:
 {
-  environment.systemPackages = with pkgs-stable; [ virt-manager distrobox ];
-  virtualisation.libvirtd = {
-    allowedBridges = [
-      "br0"
-      "virbr0"
-    ];
+  options = {
+    virt.enable = lib.mkEnableOption "enables virtualisation";
+  };
 
-    enable = true;
-    qemu.runAsRoot = false;
+  config = lib.mkIf config.virt.enable {
+    environment.systemPackages = with pkgs-stable; [ virt-manager distrobox ];
+    virtualisation.libvirtd = {
+      allowedBridges = [
+        "br0"
+        "virbr0"
+      ];
+
+      enable = true;
+      qemu.runAsRoot = false;
+    };
   };
 }

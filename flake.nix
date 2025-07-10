@@ -6,7 +6,6 @@
     systemSettings = {
       system = "x86_64-linux";
       isLaptop = false;
-      hostname = "home-pc";
       profile = "personal"; # to be implemented
       timezone = "Europe/Bucharest";
       locale = "en_US.UTF-8";
@@ -16,7 +15,6 @@
     };
 
     userSettings = rec {
-      username = "alin";
       name = "Alin";
       email = "alin.dulceanu@gmail.com";
       dotfilesDir = "~/.dotfiles";
@@ -36,16 +34,16 @@
     pkgs-stable = import inputs.nixpkgs-stable {
       system = systemSettings.system;
       config = {
-	allowUnfree = true;
-	allowUnfreePredicate = (_: true);
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
       };
     };
 
     pkgs-unstable = import inputs.nixpkgs-unstable {
       system = systemSettings.system;
       config = {
-	allowUnfree = true;
-	allowUnfreePredicate = (_: true);
+        allowUnfree = true;
+        allowUnfreePredicate = (_: true);
       }; 
     };
 
@@ -54,34 +52,60 @@
 
   in {
     nixosConfigurations = {
-      "${systemSettings.hostname}" = lib-stable.nixosSystem {
-	system = systemSettings.system;
-	modules = [ 
-	  ./configuration.nix
-	  inputs.stylix.nixosModules.stylix
-	];
-	specialArgs = {
-	  inherit systemSettings;
-	  inherit userSettings;
-	  inherit pkgs-stable;
-	  inherit pkgs-unstable;
-	  inherit inputs;
-	};
+      home-pc = lib-stable.nixosSystem {
+        system = systemSettings.system;
+        modules = [ 
+          ./hosts/home-pc/configuration.nix
+          inputs.stylix.nixosModules.stylix
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+          inherit pkgs-stable;
+          inherit pkgs-unstable;
+          inherit inputs;
+        };
+      };
+      laptop = lib-stable.nixosSystem {
+        system = systemSettings.system;
+        modules = [ 
+          ./hosts/laptop/configuration.nix
+          inputs.stylix.nixosModules.stylix
+        ];
+        specialArgs = {
+          inherit systemSettings;
+          inherit userSettings;
+          inherit pkgs-stable;
+          inherit pkgs-unstable;
+          inherit inputs;
+        };
       };
     };
 
     homeConfigurations = {
-      "${userSettings.username}" = inputs.home-manager.lib.homeManagerConfiguration {
-	inherit pkgs;
-	modules = [
-	  ./home.nix
-	];
-	extraSpecialArgs = {
-	  inherit userSettings;
-	  inherit pkgs-stable;
-	  inherit inputs;
-	  inherit systemSettings;
-	};
+      alin = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./hosts/home-pc/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit userSettings;
+          inherit pkgs-stable;
+          inherit inputs;
+          inherit systemSettings;
+        };
+      };
+      aln = inputs.home-manager.lib.homeManagerConfiguration {
+        inherit pkgs;
+        modules = [
+          ./hosts/laptop/home.nix
+        ];
+        extraSpecialArgs = {
+          inherit userSettings;
+          inherit pkgs-stable;
+          inherit inputs;
+          inherit systemSettings;
+        };
       };
     };
    };
