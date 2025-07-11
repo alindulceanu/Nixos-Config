@@ -32,7 +32,7 @@
     pkgs = pkgs-stable;
 
     pkgs-stable = import inputs.nixpkgs-stable {
-      system = systemSettings.system;
+      system = "x86_64-linux";
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -40,7 +40,7 @@
     };
 
     pkgs-unstable = import inputs.nixpkgs-unstable {
-      system = systemSettings.system;
+      system = "x86_64-linux";
       config = {
         allowUnfree = true;
         allowUnfreePredicate = (_: true);
@@ -53,7 +53,7 @@
   in {
     nixosConfigurations = {
       home-pc = lib-stable.nixosSystem {
-        system = systemSettings.system;
+        system = "x86_64-linux";
         modules = [ 
           ./hosts/home-pc/configuration.nix
           inputs.stylix.nixosModules.stylix
@@ -67,7 +67,7 @@
         };
       };
       laptop = lib-stable.nixosSystem {
-        system = systemSettings.system;
+        system = "x86_64-linux";
         modules = [ 
           ./hosts/laptop/configuration.nix
           inputs.stylix.nixosModules.stylix

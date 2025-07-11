@@ -2,17 +2,15 @@
 
 {
   imports = [
-    ./user/app/git/git.nix
-    ./user/style/stylix.nix
-    ./user/app/nixvim/nixvim.nix
-    ./user/app/shell/shell.nix
-    ./user/app/terminal/${userSettings.terminal}.nix
-    # ./user/wm/${userSettings.wm}.nix
-    ./user/app/firefox/firefox.nix
+    ./../../user
   ];
+  gitSettings = {
+    name = "alin";
+    email = "alin.dulceanu@gmail.com";
+  };
 
-  home.username = userSettings.username;
-  home.homeDirectory = "/home/${userSettings.username}";
+  home.username = "alin";
+  home.homeDirectory = "/home/alin";
 
   home.stateVersion = "25.05";
 
@@ -30,8 +28,6 @@
     nautilus
     vlc
     wine
-    xfce.xfconf        # Provides `xfconf-query`
-    xfce.xfdesktop  
     keepassxc
     keepmenu
   ];
@@ -39,7 +35,6 @@
   home.file = {
     
   };
-
   
   home.sessionVariables = {
     EDITOR = userSettings.editor;

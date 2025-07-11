@@ -1,4 +1,4 @@
-{ userSettings, systemSettings, pkgs, ... }:
+{ userSettings, ... }:
 let
   aliases = {
     nrs = "sudo nixos-rebuild switch --flake ${userSettings.dotfilesDir}"; 

@@ -19,6 +19,15 @@
   }
   {
     mode = "n";
+    key = "<leader>ll";
+    action = "<cmd>Lspsaga show_line_diagnostics<cr>";
+    options = {
+      desc = "Show error message on cursor";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
     key = "<leader>lk";
     action = "<cmd>Lspsaga hover_doc<CR>";
     options = {
