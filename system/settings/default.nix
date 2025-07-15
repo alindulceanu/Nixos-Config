@@ -1,5 +1,9 @@
 { systemSettings, ... }:
 {
+  imports = [
+    ./bootScreen.nix
+  ];
+
   time.timeZone = systemSettings.timezone;
 
   i18n.defaultLocale = systemSettings.locale;

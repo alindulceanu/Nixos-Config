@@ -33,6 +33,7 @@ in
     firewall.enable = true;
     ssh.enable = false;
     spice.enable = false;
+    bootScreen.theme = "cubes";
 #    audio = {
 #      enable = true;
 #      backend = "pulseaudio";
