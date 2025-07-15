@@ -28,6 +28,7 @@ in
       lualine.enable = true;
       nvim-surround.enable = true;
       auto-session.enable = true;
+      comment.enable = true;
       illuminate.enable = true;
       dap.enable = true;
       dap-ui.enable = true;
