@@ -25,12 +25,12 @@ in
     ];
   config = {
     # System software settings
-    flatpak.enable = false;
-    virt.enable = false;
-    bluetooth.enable = false;
-    gpuSoft.enable = false; 
+    flatpak.enable = true;
+    virt.enable = true;
+    bluetooth.enable = true;
+    gpuSoft.enable = true; 
     automount.enable = true;
-    firewall.enable = false;
+    firewall.enable = true;
     ssh.enable = false;
     spice.enable = false;
 #    audio = {
