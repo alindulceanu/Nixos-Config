@@ -26,17 +26,22 @@ in
   config = {
     # System software settings
     flatpak.enable = false;
-    virt.enable = true;
-    bluetooth.enable = true;
-    gpuSoft.enable = false; # todo
+    virt.enable = false;
+    bluetooth.enable = false;
+    gpuSoft.enable = false; 
     automount.enable = true;
-    firewall.enable = true;
-    ssh.enable = true;
+    firewall.enable = false;
+    ssh.enable = false;
     spice.enable = false;
 #    audio = {
 #      enable = true;
 #      backend = "pulseaudio";
 #    };
+    
+    swapDevices = [{
+      device = "/.swapfile";
+      size = 8192;
+    }];
 
     networking = {
       enable = true;
@@ -52,7 +57,11 @@ in
     # You can disable this if you're only using the Wayland session.
     services.xserver.enable = true;
 
-    services.displayManager.sddm.enable = true;
+    services.displayManager.sddm = {
+      enable = true;
+      theme = "chili";
+      wayland.enable = true;
+    };
 
     programs.hyprland.enable = systemSettings.wm == "hyprland";
     services.desktopManager.cosmic.enable = systemSettings.wm == "cosmic";
@@ -77,10 +86,13 @@ in
 
     programs.zsh.enable = true;
 
+    nixpkgs.config.allowUnfree = true;
+
     environment.systemPackages = with pkgs-stable; [
       wget
       git
       tree
+      sddm-chili-theme
     ] ++ ( with pkgs-unstable; [
 
       ]

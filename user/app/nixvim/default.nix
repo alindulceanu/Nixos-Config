@@ -7,14 +7,13 @@ in
   programs.nixvim = {
     enable = true;
     colorschemes.gruvbox.enable = true;
-    
+
     globals = {
       mapleader = " ";
       localleader = ",";
     };
 
     keymaps = keymaps;
-
     opts = {
       relativenumber = true;
       tabstop = 2;
@@ -28,18 +27,17 @@ in
     plugins = {
       lualine.enable = true;
       nvim-surround.enable = true;
-      neoscroll = { 
-        enable = true; 
-        settings = {
-          hide_cursor = true;
-          stop_eof = true;
-          respect_scrolloff = true;
-          cursor_scrolls_alone = true;
-          easing_function = "'sine'";
-          performance_mode = false;
-        };
-      };
+      auto-session.enable = true;
+      illuminate.enable = true;
+      dap.enable = true;
+      dap-ui.enable = true;
+      trouble.enable = true;
+      smear-cursor.enable = true;
+      auto-save.enable = true;
       modicator.enable = true;
+      transparent.enable = true;
+      guess-indent.enable = true;
+      indent-blankline.enable = true;
       git-conflict.enable = true;
       oil-git-status.enable = true;
       indent-tools.enable = true;

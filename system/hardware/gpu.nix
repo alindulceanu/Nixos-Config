@@ -5,17 +5,15 @@
   };
 
   config = lib.mkIf config.gpuSoft.enable {
-    hardware.opengl.enable = true;
-    hardware.opengl.driSupport = true;
-    hardware.opengl.driSupport32Bit = true;
+    hardware.graphics.enable = true;
 
-    hardware.opengl.extraPackages = with pkgs-stable; [
+    hardware.graphics.extraPackages = with pkgs-stable; [
       vaapiVdpau
       libvdpau
-      mesa.drivers
+      mesa
     ];
 
-    hardware.opengl.extraPackages32 = with pkgs-stable; [
+    hardware.graphics.extraPackages32 = with pkgs-stable; [
       libva
     ];
 

@@ -1,4 +1,4 @@
-{ config, pkgs, userSettings, ... }:
+{ config, pkgs, pkgs-unstable, userSettings, ... }:
 
 {
   imports = [
@@ -8,6 +8,7 @@
     name = "alin";
     email = "alin.dulceanu@gmail.com";
   };
+  terminals.kitty.enable = true;
 
   home.username = "alin";
   home.homeDirectory = "/home/alin";
@@ -27,10 +28,14 @@
     zapzap
     nautilus
     vlc
-    wine
+    wineWowPackages.stable
+    winetricks
     keepassxc
     keepmenu
-  ];
+    p7zip
+  ] ++ ( with pkgs-unstable; [
+#    wineWowPackages.waylandFull
+  ]);
 
   home.file = {
     

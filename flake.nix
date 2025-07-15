@@ -20,7 +20,7 @@
       dotfilesDir = "~/.dotfiles";
       theme = "ashes"; # to be implemented
       themePolarity = "dark";
-      wm = "cosmic";
+      wm = "hyprland";
       displayServer = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
       terminal = "kitty";
       font = "FiraCode Nerd Font";
@@ -90,9 +90,9 @@
         ];
         extraSpecialArgs = {
           inherit userSettings;
-          inherit pkgs-stable;
           inherit inputs;
           inherit systemSettings;
+          inherit pkgs-unstable;
         };
       };
       aln = inputs.home-manager.lib.homeManagerConfiguration {

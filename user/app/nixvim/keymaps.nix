@@ -287,4 +287,31 @@
       silent = true;
     };
   }
+  {
+    mode = "n";
+    key = "<leader>`";
+    action = "<cmd>TransparentToggle<cr>";
+    options = {
+      desc = "Toggle editor transparency";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>~";
+    action = "<cmd>SmearCursorToggle<cr>";
+    options = {
+      desc = "Toggle smear cursor";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>y";
+    action = "<cmd>GuessIndent<cr>";
+    options = {
+      desc = "Auto indent";
+      silent = true;
+    };
+  }
 ]
