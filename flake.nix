@@ -83,7 +83,7 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
     stylix = {
-      url = "path:./patches/stylix/stylix/";
+      url = "github:alindulceanu/stylix";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     nixvim = {

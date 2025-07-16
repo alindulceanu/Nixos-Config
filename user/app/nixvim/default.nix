@@ -1,4 +1,4 @@
-{ inputs, pkgs, config, ... }:
+{ inputs, pkgs, ... }:
 let
   keymaps = import ./keymaps.nix;
 in
@@ -6,7 +6,7 @@ in
   imports = [ inputs.nixvim.homeModules.nixvim ];
   programs.nixvim = {
     enable = true;
-    colorschemes.gruvbox.enable = true;
+    colorschemes.tokyonight.enable = true;
 
     globals = {
       mapleader = " ";
@@ -21,7 +21,7 @@ in
       expandtab = true;
       smartindent = true;
       signcolumn = "yes";
-      #guifont = "${config.stylix.fonts.monospace.name}:h12";
+      # guifont = "${config.stylix.fonts.monospace.name}:h12";
     };
 
     plugins = {
@@ -30,8 +30,6 @@ in
       auto-session.enable = true;
       comment.enable = true;
       illuminate.enable = true;
-      dap.enable = true;
-      dap-ui.enable = true;
       trouble.enable = true;
       smear-cursor.enable = true;
       auto-save.enable = true;
@@ -43,7 +41,12 @@ in
       oil-git-status.enable = true;
       indent-tools.enable = true;
       which-key.enable = true;
-      lspsaga.enable = true; 
+      lspsaga.enable = true;
+      dap.enable = true;
+      dap-python.enable = true;
+      dap-ui.enable = true;
+      dap-virtual-text.enable = true;
+      dap-lldb.enable = true;
 
       telescope = { 
         enable = true;

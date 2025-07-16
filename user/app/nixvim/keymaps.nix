@@ -307,10 +307,91 @@
   }
   {
     mode = "n";
-    key = "<leader>y";
-    action = "<cmd>GuessIndent<cr>";
+    key = "<leader>du";
+    action = "<cmd>lua require'dapui'.toggle()<cr>";
     options = {
-      desc = "Auto indent";
+      desc = "Enables dapui";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>db";
+    action = "<cmd>DapToggleBreakpoint<cr>";
+    options = {
+      desc = "Adds a breakpoint";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>ds";
+    action = "<cmd>DapStepInto<cr>";
+    options = {
+      desc = "Step Into";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dd";
+    action = "<cmd>DapNew<cr>";
+    options = {
+      desc = "Starts debugging";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dt";
+    action = "<cmd>DapVirtualTextToggle<cr>";
+    options = {
+      desc = "Toggles virtual text";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dc";
+    action = "<cmd>DapClearBreakpoints<cr>";
+    options = {
+      desc = "Clears all breakpoints";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dT";
+    action = "<cmd>DapTerminate<cr>";
+    options = {
+      desc = "Stops debugging";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dp";
+    action = "<cmd>DapPause<cr>";
+    options = {
+      desc = "Pause";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>do";
+    action = "<cmd>DapStepOver<cr>";
+    options = {
+      desc = "Step over";
+      silent = true;
+    };
+  }
+  {
+    mode = "n";
+    key = "<leader>dO";
+    action = "<cmd>DapStepOut<cr>";
+    options = {
+      desc = "Step out";
       silent = true;
     };
   }

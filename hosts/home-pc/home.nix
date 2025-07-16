@@ -23,6 +23,7 @@
     };
   };
 
+  stylix.enableReleaseChecks = false; 
 
   waybar.enable = true;
 

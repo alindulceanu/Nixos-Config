@@ -68,6 +68,7 @@ in {
     enable = true;
 
     targets.nixvim.enable = false;
+    targets.fuzzel.enable = true;
 
     image = pkgs.fetchurl {
       url = backgroundUrl;
