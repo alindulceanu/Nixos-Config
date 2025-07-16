@@ -1,8 +1,8 @@
-{ userSettings, ... }:
+{ ... }:
 let
   aliases = {
-    nrs = "sudo nixos-rebuild switch --flake ${userSettings.dotfilesDir}"; 
-    hrs = "home-manager switch --flake ${userSettings.dotfilesDir}";
+    nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles"; 
+    hrs = "home-manager switch --flake ~/.dotfiles";
     ".." = "cd ../";
     "...." = "cd ../../";
     "......" = "cd ../../../";

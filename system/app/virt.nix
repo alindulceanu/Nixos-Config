@@ -1,4 +1,4 @@
-{ config, lib, pkgs-stable, systemSettings, ... }:
+{ config, lib, pkgs-stable,... }:
 {
   options = {
     virt.enable = lib.mkEnableOption "enables virtualisation";

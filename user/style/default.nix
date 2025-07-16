@@ -1,14 +1,70 @@
-{ config, lib, inputs, userSettings, pkgs, ... }:
+{ config, lib, inputs, pkgs, ... }:
 let
-  themePath = "${inputs.self}/themes/${userSettings.theme}/${userSettings.theme}.yaml";
-  themePolarity = lib.removeSuffix "\n" (builtins.readFile ("${inputs.self}/themes"+("/"+userSettings.theme)+"/polarity.txt"));
-  backgroundUrl = builtins.readFile ("${inputs.self}/themes"+("/"+userSettings.theme)+"/backgroundurl.txt");
-  backgroundSha256 = builtins.readFile ("${inputs.self}/themes/sha256.txt");
+  themePath = "${inputs.self}/themes/${config.style.theme}/${config.style.theme}.yaml";
+  themePolarity = lib.removeSuffix "\n" (builtins.readFile ("${inputs.self}/themes"+("/"+config.style.theme)+"/polarity.txt"));
+  backgroundUrl = builtins.readFile ("${inputs.self}/themes"+("/"+config.style.theme)+"/backgroundurl.txt");
+  backgroundSha256 = builtins.readFile ("${inputs.self}/themes/${config.style.theme}/backgroundsha256.txt");
 
 in {
   imports = [ inputs.stylix.homeModules.stylix ];
 
-  stylix = {
+  options = {
+    style = lib.mkOption {
+      type = lib.types.submodule {
+        options = {
+
+          theme = lib.mkOption {
+            type = lib.types.str;
+            default = "ashes";
+            description = "Select a system theme from themes/";
+          };
+
+          font = lib.mkOption {
+            type = lib.types.submodule {
+              options = {
+                name = lib.mkOption {
+                  type = lib.types.str;
+                  default = "FiraCode Nerd Font";
+                  description = "Select a system font family";
+                };
+
+                package = lib.mkOption {
+                  type = lib.types.package;
+                  default = pkgs.nerd-fonts.fira-code;
+                  description = "Select the font package";
+                };
+              };
+            };
+            description = "Font configuration (name + package)";
+          };
+
+          cursor = lib.mkOption {
+            type = lib.types.submodule {
+              options = {
+                name = lib.mkOption {
+                  type = lib.types.str;
+                  default = "Bibata-Modern-Ice";
+                  description = "Select a system cursor";
+                };
+
+                package = lib.mkOption {
+                  type = lib.types.package;
+                  default = pkgs.bibata-cursors;
+                  description = "Select the cursor package";
+                };
+              };
+            };
+            description = "Cursor configuration (name + package)";
+          };
+
+        };
+      };
+
+      description = "Visual style options including theme, font, and cursor.";
+    };
+  };
+  
+  config.stylix = {
     enable = true;
 
     targets.nixvim.enable = false;
@@ -21,18 +77,18 @@ in {
     base16Scheme = themePath;
     fonts = {
       monospace = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
+        name = config.style.font.name;
+        package = config.style.font.package;
       };
 
       serif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
+        name = config.style.font.name;
+        package = config.style.font.package;
       };
       
       sansSerif = {
-        name = userSettings.font;
-        package = userSettings.fontPkg;
+        name = config.style.font.name;
+        package = config.style.font.package;
       };
 
       emoji = {
@@ -58,8 +114,8 @@ in {
     polarity = themePolarity;
 
     cursor = {
-      package = pkgs.bibata-cursors;
-      name = "Bibata-Modern-Ice";
+      name = config.style.cursor.name;
+      package = config.style.cursor.package;
       size = 24;
     };
 
@@ -73,11 +129,9 @@ in {
     #};
 
     #fonts.fontconfig.defaultFonts = {
-      #monospace = [ userSettings.font ];
-      #sansSerif = [ userSettings.font ];
-     # serif = [ userSettings.font ];
+      #monospace = [ config.font.name ];
+      #sansSerif = [ config.font.name ];
+     # serif = [ config.font.name ];
     #};
-    
   };
-
 }

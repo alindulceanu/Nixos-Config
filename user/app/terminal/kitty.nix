@@ -1,4 +1,4 @@
-{ pkgs, lib, config, userSettings, ... }:
+{ pkgs, lib, config,... }:
 {
   options = {
     terminals.kitty.enable = lib.mkEnableOption "enables kitty terminal";
@@ -13,7 +13,7 @@
       settings = {
         background_opacity = lib.mkForce 0.85;
         modify_font = "cell_width 90%";
-        font_family = userSettings.font;
+        font_family = config.style.font.name;
         font_size = 12;
       };
     };

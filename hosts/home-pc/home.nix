@@ -1,13 +1,31 @@
-{ config, pkgs, pkgs-unstable, userSettings, ... }:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
     ./../../user
   ];
+
   gitSettings = {
     name = "alin";
     email = "alin.dulceanu@gmail.com";
   };
+
+  # Stylix
+  style = {
+    theme = "car";
+    font = {
+      name = "FiraCode Nerd Font";
+      package = pkgs.nerd-fonts.fira-code;
+    };
+    cursor = {
+      name = "Bibata-Modern-Ice";
+      package = pkgs.bibata-cursors;
+    };
+  };
+
+
+  waybar.enable = true;
+
   terminals.kitty.enable = true;
 
   home.username = "alin";
@@ -25,26 +43,30 @@
     gfn-electron
     teams-for-linux
     adwaita-icon-theme
+    devbox
     zapzap
-    nautilus
     vlc
+    flameshot
     wineWowPackages.stable
     winetricks
     keepassxc
     keepmenu
     p7zip
+    pywal
   ] ++ ( with pkgs-unstable; [
 #    wineWowPackages.waylandFull
   ]);
+
+  hypr.enable = true;
 
   home.file = {
     
   };
   
   home.sessionVariables = {
-    EDITOR = userSettings.editor;
-    TERM = userSettings.terminal;
-    BROWSER = userSettings.browser;
+    EDITOR = "nvim";
+    TERM = "kitty";
+    BROWSER = "firefox";
   };
 
   xdg.enable = true;

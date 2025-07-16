@@ -3,32 +3,6 @@
 
   outputs = inputs@{ self, ... }:
   let
-    systemSettings = {
-      system = "x86_64-linux";
-      isLaptop = false;
-      profile = "personal"; # to be implemented
-      timezone = "Europe/Bucharest";
-      locale = "en_US.UTF-8";
-      bootMode = "uefi";
-      bootMountPath = "/boot";
-      gpuType = "intel";
-    };
-
-    userSettings = rec {
-      name = "Alin";
-      email = "alin.dulceanu@gmail.com";
-      dotfilesDir = "~/.dotfiles";
-      theme = "ashes"; # to be implemented
-      themePolarity = "dark";
-      wm = "hyprland";
-      displayServer = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-      terminal = "kitty";
-      font = "FiraCode Nerd Font";
-      fontPkg = pkgs-stable.nerd-fonts.fira-code;
-      editor = "neovim";
-      browser = "firefox";
-    };
-
     pkgs = pkgs-stable;
 
     pkgs-stable = import inputs.nixpkgs-stable {
@@ -59,8 +33,6 @@
           inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
           inherit pkgs-stable;
           inherit pkgs-unstable;
           inherit inputs;
@@ -73,8 +45,6 @@
           inputs.stylix.nixosModules.stylix
         ];
         specialArgs = {
-          inherit systemSettings;
-          inherit userSettings;
           inherit pkgs-stable;
           inherit pkgs-unstable;
           inherit inputs;
@@ -89,9 +59,7 @@
           ./hosts/home-pc/home.nix
         ];
         extraSpecialArgs = {
-          inherit userSettings;
           inherit inputs;
-          inherit systemSettings;
           inherit pkgs-unstable;
         };
       };
@@ -101,10 +69,8 @@
           ./hosts/laptop/home.nix
         ];
         extraSpecialArgs = {
-          inherit userSettings;
           inherit pkgs-stable;
           inherit inputs;
-          inherit systemSettings;
         };
       };
     };

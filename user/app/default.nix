@@ -6,5 +6,6 @@
     ./nixvim
     ./firefox
     ./terminal
+    ./waybar
   ];
 }

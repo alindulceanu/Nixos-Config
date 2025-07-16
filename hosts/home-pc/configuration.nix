@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, pkgs-stable, pkgs-unstable, ... }:
+{ lib, pkgs-stable, pkgs-unstable, config, ... }:
 let
   systemSettings = {
     timezone = "Europe/Bucharest";
@@ -10,7 +10,6 @@ let
     locale = "en_US.UTF-8";
     bootMode = "uefi"; # todo
     gpuType = "intel"; # todo
-    wm = "cosmic";
     dm = "sddm"; # todo
     displayServer = "wayland";
     username = "alin";
@@ -38,6 +37,11 @@ in
 #      enable = true;
 #      backend = "pulseaudio";
 #    };
+
+    settings = {
+      timezone = "Europe/Bucharest";
+      locale = "en_US.UTF-8";
+    };
     
     swapDevices = [{
       device = "/.swapfile";
@@ -54,6 +58,8 @@ in
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    programs.hyprland.enable = true;
+
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
     services.xserver.enable = true;
@@ -64,8 +70,11 @@ in
       wayland.enable = true;
     };
 
-    programs.hyprland.enable = systemSettings.wm == "hyprland";
-    services.desktopManager.cosmic.enable = systemSettings.wm == "cosmic";
+    systemd.services.display-manager = {
+      after = [ "systemd-udev-settle.service" ];
+      wants = [ "system-udev-settle.service" ];
+    };
+
     # Configure keymap in X11
     services.xserver.xkb = {
       layout = "ro";
@@ -102,7 +111,7 @@ in
     system.stateVersion = "25.05";
 
     nix.settings.experimental-features = ["nix-command" "flakes"];
-    };
+  };
 
   options = {
     systemSettings.hostname = lib.mkOption {
