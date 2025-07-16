@@ -1,16 +1,18 @@
-{ pkgs, config, lib, userSettings, systemSettings, ... }:
+{ pkgs, config, lib, ... }:
 {
   options = {
     hypr.enable = lib.mkEnableOption "enables hyprland config";
   };
 
   config = lib.mkIf config.hypr.enable {
+    services.dunst.enable = true;
+
     home.packages = with pkgs; [
       fuzzel
       kdePackages.dolphin
       hyprlock
       hyprpaper
-      dunst
+      wlogout
     ];
 
     wayland.windowManager.hyprland = {
@@ -28,6 +30,12 @@
           "waybar"
         ];
 
+        general = {
+          gaps_in = 5;
+          gaps_out = 5;
+          border_size = 1;
+        };
+
         monitor = "DP-1,1920x1080@75,1x1,1";
 
         bind = [
@@ -37,6 +45,7 @@
           "$mod, C, killactive"
           "$mod, M, exit"
           "$mod, J, exec, flameshot gui"
+          "$mod, X, exec, wlogout"
         ] ++ 
           (builtins.concatLists (builtins.genList (i:
             let ws = i + 1;

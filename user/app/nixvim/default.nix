@@ -21,7 +21,7 @@ in
       expandtab = true;
       smartindent = true;
       signcolumn = "yes";
-      guifont = "${config.stylix.fonts.monospace.name}:h12";
+      #guifont = "${config.stylix.fonts.monospace.name}:h12";
     };
 
     plugins = {

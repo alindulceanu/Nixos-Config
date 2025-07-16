@@ -82,7 +82,10 @@
       url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
-    stylix.url = "github:danth/stylix/release-25.05";
+    stylix = {
+      url = "path:./patches/stylix/stylix/";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
     nixvim = {
       url = "github:nix-community/nixvim/nixos-25.05";
       inputs.nixpkgs.follows = "nixpkgs-stable";
