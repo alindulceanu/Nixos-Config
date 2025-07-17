@@ -88,8 +88,10 @@ in
       isNormalUser = true;
       description = "${systemSettings.username}";
       extraGroups = [ "libvirtd" "networkmanager" "wheel" "audio" "video" ];
-      shell = pkgs-stable.bash;
+      shell = pkgs-stable.zsh;
     };
+
+    programs.zsh.enable = true;
 
     security.sudo.enable = true;
     security.sudo.wheelNeedsPassword = true;

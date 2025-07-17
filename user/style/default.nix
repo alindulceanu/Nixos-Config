@@ -68,7 +68,8 @@ in {
     enable = true;
 
     targets.nixvim.enable = false;
-    targets.fuzzel.enable = true;
+
+    targets.firefox.profileNames = [ "alin" ];
 
     image = pkgs.fetchurl {
       url = backgroundUrl;
