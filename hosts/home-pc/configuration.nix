@@ -88,13 +88,11 @@ in
       isNormalUser = true;
       description = "${systemSettings.username}";
       extraGroups = [ "libvirtd" "networkmanager" "wheel" "audio" "video" ];
-      shell = pkgs-stable.zsh;
+      shell = pkgs-stable.bash;
     };
 
     security.sudo.enable = true;
     security.sudo.wheelNeedsPassword = true;
-
-    programs.zsh.enable = true;
 
     nixpkgs.config.allowUnfree = true;
 
@@ -102,6 +100,7 @@ in
       wget
       git
       tree
+      zsh
       sddm-chili-theme
     ] ++ ( with pkgs-unstable; [
 

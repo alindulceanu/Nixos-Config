@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, pkgs-unstable,... }:
 let
   aliases = {
     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles"; 
@@ -12,31 +12,35 @@ in
 {
   programs.zsh = {
     enable = true;
-
-    autosuggestion.enable = true;
-    syntaxHighlighting.enable = true;
-    enableCompletion = true;
-    shellAliases = aliases;
-
     initExtra = ''
-    PROMPT=" ◉ %U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f
-     %F{green}→%f "
-    RPROMPT="%F{red}▂%f%F{yellow}▄%f%F{green}▆%f%F{cyan}█%f%F{blue}▆%f%F{magenta}▄%f%F{white}▂%f"
-    [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
-    bindkey '^P' history-beginning-search-backward
-    bindkey '^N' history-beginning-search-forward
+      [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+      fastfetch
     '';
+    enableCompletion = true;
+    # autosuggestions.enable = true;
+    syntaxHighlighting.enable = true;
+    shellAliases = aliases;
+    # promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
+    plugins = [
+      {
+        name = "powerlevel10k-config";
+        src = pkgs.zsh-powerlevel10k;
+        file = "p10k.zsh";
+      }
+      {
+        name = "zsh-powerlevel10k";
+        src = "${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/";
+        file = "powerlevel10k.zsh-theme";
+      }
+    ];
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" "z" "sudo" "command-not-found" ];
+    };
   };
 
-  
   programs.bash = {
     enable = true;
-    enableCompletion = true;
     shellAliases = aliases;
   };
-
-  
-  programs.direnv.enable = true;
-  programs.direnv.enableZshIntegration = true;
-  programs.direnv.nix-direnv.enable = true;
 }

@@ -12,7 +12,7 @@
 
   # Stylix
   style = {
-    theme = "car";
+    theme = "space1";
     font = {
       name = "FiraCode Nerd Font";
       package = pkgs.nerd-fonts.fira-code;
@@ -24,9 +24,8 @@
   };
 
   stylix.enableReleaseChecks = false; 
-
   waybar.enable = true;
-
+  hypr.enable = true;
   terminals.kitty.enable = true;
 
   home.username = "alin";
@@ -36,9 +35,9 @@
 
   home.packages = with pkgs; [
     fastfetch
-    zsh
     syncthing
     libreoffice
+    zsh
     spotify
     discord
     gfn-electron
@@ -58,7 +57,6 @@
 #    wineWowPackages.waylandFull
   ]);
 
-  hypr.enable = true;
 
   home.file = {
     

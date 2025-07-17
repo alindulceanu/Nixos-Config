@@ -5,7 +5,23 @@
   };
 
   config = lib.mkIf config.hypr.enable {
-    services.dunst.enable = true;
+    services.dunst = {
+      enable = true;
+
+      settings = {
+        global = {
+          width = 300;
+          height = 300;
+          offset = "30x50";
+          origin = "top-right";
+          transparency = 10;
+        };
+
+        urgency_normal.timeout = 3;
+        urgency_critical.timeout = 0;
+        urgency_low.timeout = 2;
+      };
+    };
 
     home.packages = with pkgs; [
       fuzzel
@@ -23,6 +39,10 @@
         "$terminal" = "kitty";
         "$files" = "dolphin";
         "$launcher" = "fuzzel";
+
+        input = {
+          kb_layout = "ro";
+        };
 
         exec-once = [
           "hyprpaper"
