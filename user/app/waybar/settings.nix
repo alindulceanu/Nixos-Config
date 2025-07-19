@@ -1,6 +1,7 @@
 {
   mainBar = {
     "layer"= "top";
+    "exclusive" = true;
     "position"= "top";
     "reload_style_on_change"= true;
     "modules-left"= ["custom/notification" "clock" "tray"];

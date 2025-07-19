@@ -1,5 +1,4 @@
 { config, pkgs, pkgs-unstable, ... }:
-
 {
   imports = [
     ./../../user
@@ -37,6 +36,7 @@
     fastfetch
     syncthing
     libreoffice
+    kdePackages.okular
     zsh
     spotify
     discord
@@ -46,7 +46,6 @@
     devbox
     zapzap
     vlc
-    flameshot
     wineWowPackages.stable
     winetricks
     keepassxc
@@ -57,11 +56,6 @@
 #    wineWowPackages.waylandFull
   ]);
 
-
-  home.file = {
-    
-  };
-  
   home.sessionVariables = {
     EDITOR = "nvim";
     TERM = "kitty";

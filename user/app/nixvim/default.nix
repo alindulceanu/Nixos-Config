@@ -47,7 +47,17 @@ in
       dap-ui.enable = true;
       dap-virtual-text.enable = true;
       dap-lldb.enable = true;
+      none-ls = {
+        enable = true;
 
+        sources.formatting = {
+                prettier = { };
+      stylua = { };
+      black = { };
+      clang_format = { };
+      shfmt = { };
+        };
+      };
       telescope = { 
         enable = true;
 
