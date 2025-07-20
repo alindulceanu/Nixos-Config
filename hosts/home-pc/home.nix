@@ -38,11 +38,13 @@
     libreoffice
     kdePackages.okular
     zsh
+    gimp
     spotify
     discord
     gfn-electron
     teams-for-linux
     adwaita-icon-theme
+    obs-studio
     devbox
     zapzap
     vlc
@@ -51,6 +53,7 @@
     keepassxc
     keepmenu
     p7zip
+    fd
     pywal
   ] ++ ( with pkgs-unstable; [
 #    wineWowPackages.waylandFull
@@ -79,6 +82,37 @@
       XDG_DOTFILES_DIR = "${config.home.homeDirectory}/.dotfiles";
       XDG_ARCHIVE_DIR = "${config.home.homeDirectory}/Archive";
       XDG_VM_DIR = "${config.home.homeDirectory}/Machines";
+    };
+  };
+
+  xdg.mimeApps = {
+    enable = true;
+
+    associations.added = {
+      "text/plain" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "application/pdf" = [ "org.kde.okular.desktop" "firefox.desktop" ];
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "calc.desktop" ];
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "impress.desktop" ];
+    };
+
+    defaultApplications = {
+      "text/plain" = [ "firefox.desktop" ];
+      "text/html" = [ "firefox.desktop" ];
+      "video/mp4" = [ "vlc.desktop" ];
+      "video/x-matroska" = [ "vlc.desktop" ];
+      "video/webm" = [ "vlc.desktop" ];
+      "video/x-msvideo" = [ "vlc.desktop" ];
+      "video/x-ms-wmv" = [ "vlc.desktop" ];
+      "x-scheme-handler/http" = [ "firefox.desktop" ];
+      "x-scheme-handler/https" = [ "firefox.desktop" ];
+      "application/pdf" = [ "firefox.desktop" ]; 
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document" = [ "writer.desktop" ];
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" = [ "calc.desktop" ];
+      "application/vnd.openxmlformats-officedocument.presentationml.presentation" = [ "impress.desktop" ];
     };
   };
 

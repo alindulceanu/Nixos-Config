@@ -6,8 +6,7 @@
     "reload_style_on_change"= true;
     "modules-left"= ["custom/notification" "clock" "tray"];
     "modules-center"= ["hyprland/workspaces"];
-    "modules-right"= ["group/expand" "bluetooth" "network" "battery"];
-
+    "modules-right"= ["group/expand" "bluetooth" "network" "battery" "backlight/slider" "wireplumber"];
 
     "hyprland/workspaces"= {
         "format"= "{icon}";
@@ -33,6 +32,17 @@
             "on-click-right"= "shift_down";
             "on-click"= "shift_up";
         };
+    };
+    "backlight/slider" = {
+        "orientation" = "horizontal";
+    };
+    "wireplumber" = {
+        "max-volume" = 150;
+        "on-click" = "pwvucontrol";
+        "scroll-step" = 1;
+        "format" = "{volume}% {icon}";
+        "format-icons" = ["" "" ""];
+        "format-muted" = "";
     };
     "network"= {
         "format-wifi"= "";
