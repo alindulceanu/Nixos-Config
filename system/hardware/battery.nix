@@ -6,7 +6,7 @@
     };
   };
 
-  config = lib.mkIf config.options.bat.enable {
+  config = lib.mkIf config.bat.enable {
     environment.systemPackages = with pkgs-stable; [
       powertop
     ];
