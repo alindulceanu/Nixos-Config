@@ -11,7 +11,7 @@
 
   # Stylix
   style = {
-    theme = "space1";
+    theme = "car";
     font = {
       name = "FiraCode Nerd Font";
       package = pkgs.nerd-fonts.fira-code;

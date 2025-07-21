@@ -136,6 +136,7 @@
 
         input = {
           kb_layout = "ro";
+          natural_scroll = true;
         };
 
         exec-once = [

@@ -11,5 +11,6 @@
     ./networking.nix
     ./pipewire.nix
     ./pulseaudio.nix
+    ./battery.nix
   ];
 }

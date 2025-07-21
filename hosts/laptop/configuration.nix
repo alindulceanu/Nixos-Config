@@ -18,7 +18,7 @@ let
 in
 {
   imports =
-    [ # Include the results of the hardware scan.
+    [ # Include the results of the hardware scan
       ./hardware-configuration.nix
       ./../../system
     ];
@@ -32,6 +32,7 @@ in
     firewall.enable = true;
     ssh.enable = false;
     spice.enable = false;
+    bat.enable = true;
     bootScreen.theme = "cubes";
 #    audio = {
 #      enable = true;
@@ -62,7 +63,15 @@ in
 
     # Enable the X11 windowing system.
     # You can disable this if you're only using the Wayland session.
-    services.xserver.enable = true;
+    services.xserver = {
+      enable = true;
+    };
+    services = {
+      libinput = {
+        enable = true;
+        touchpad.naturalScrolling = true;
+      };
+    };
 
     services.displayManager.sddm = {
       enable = true;
@@ -80,8 +89,6 @@ in
       layout = "ro";
       variant = "";
     };
-    # Enable touchpad support (enabled default in most desktopManager).
-    services.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
     users.users.${systemSettings.username} = {
