@@ -34,7 +34,7 @@
         };
     };
     "backlight/slider" = {
-        "orientation" = "horizontal";
+        "orientation" = "vertical";
     };
     "wireplumber" = {
         "max-volume" = 150;

@@ -22,13 +22,21 @@
     };
   };
 
+  hypr = {
+    enable = true;
+    monitor = {
+      name = "eDP-1";
+      resolution = "1920x1080";
+      frequency = "60";
+    };
+  };
+
   stylix.enableReleaseChecks = false; 
   waybar.enable = true;
-  hypr.enable = true;
   terminals.kitty.enable = true;
 
-  home.username = "alin";
-  home.homeDirectory = "/home/alin";
+  home.username = "aln";
+  home.homeDirectory = "/home/aln";
 
   home.stateVersion = "25.05";
 

@@ -1,7 +1,34 @@
 { pkgs, config, lib, ... }:
 {
   options = {
-    hypr.enable = lib.mkEnableOption "enables hyprland config";
+    hypr = {
+      enable = lib.mkEnableOption "enables hyprland config";
+
+      monitor = lib.mkOption {
+        description = "Defines monitor parameters"; # todo multiple monitors
+        type = lib.types.submodule {
+          options = {
+            name = lib.mkOption {
+              type = lib.types.str;
+              default = "DP-1";
+              description = "Name of the monitor in hyprctl";
+            };
+
+            resolution = lib.mkOption {
+              type = lib.types.str;
+              default = "1920x1080";
+              description = "Sets the monitor resolution";
+            };
+
+            frequency = lib.mkOption {
+              type = lib.types.str;
+              default = "75";
+              description = "Sets the monitor framerate";
+            };
+          };
+        };
+      };
+    };
   };
 
   config = lib.mkIf config.hypr.enable {
@@ -123,7 +150,7 @@
           border_size = 1;
         };
 
-        monitor = "DP-1,1920x1080@75,1x1,1";
+        monitor = "${config.hypr.monitor.name},${config.hypr.monitor.resolution}@${config.hypr.monitor.frequency},1x1,1";
 
         bind = [
           "$mod, E, exec, ~/.config/hypr/scripts/open-ranger"
