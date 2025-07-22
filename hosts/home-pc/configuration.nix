@@ -46,14 +46,9 @@ in
     hibernate = {
       enable = true;
       swapOffset = "4493312";
-      rootPath = "/dev/disk/by-uuid/9cbfcf6e-e96f-409d-909f-dba9e247b162";
+      rootPath = config.fileSystems."/".device;
     };
     
-    swapDevices = [{
-      device = "/.swapfile";
-      size = 8192;
-    }];
-
     networking = {
       enable = true;
       proxyUrl = null;

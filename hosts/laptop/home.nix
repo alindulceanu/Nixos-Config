@@ -47,7 +47,6 @@
     syncthing
     libreoffice
     kdePackages.okular
-    zsh
     gimp
     spotify
     discord
