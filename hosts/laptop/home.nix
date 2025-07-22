@@ -31,6 +31,7 @@
     };
   };
 
+  dev.enable = true;
   stylix.enableReleaseChecks = false; 
   waybar.enable = true;
   terminals.kitty.enable = true;

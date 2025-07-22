@@ -7,5 +7,6 @@
     ./firefox
     ./terminal
     ./waybar
+    ./dev
   ];
 }

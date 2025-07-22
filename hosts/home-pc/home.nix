@@ -22,6 +22,7 @@
     };
   };
 
+  dev.enable = true;
   stylix.enableReleaseChecks = false; 
   waybar.enable = true;
   hypr.enable = true;
