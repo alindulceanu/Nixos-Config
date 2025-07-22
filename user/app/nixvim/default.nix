@@ -80,12 +80,8 @@ in
         enable = true;
         settings = {
           direction = "horizontal";
-          float_opts = {
-            border = "shadow";
-            heights = 30;
-            width = 130;
-          };
           open_mapping = "[[<c-\\>]]";
+          size = 50;
         };
       };
 

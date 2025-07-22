@@ -42,6 +42,12 @@ in
       timezone = "Europe/Bucharest";
       locale = "en_US.UTF-8";
     };
+
+    hibernate = {
+      enable = true;
+      swapOffset = "4493312";
+      rootPath = "/dev/disk/by-uuid/9cbfcf6e-e96f-409d-909f-dba9e247b162";
+    };
     
     swapDevices = [{
       device = "/.swapfile";

@@ -28,6 +28,12 @@
           };
         };
       };
+
+      naturalScroll = lib.mkOption {
+        type = lib.types.bool;
+        default = false;
+        description = "Toggles natural scrolling";
+      };
     };
   };
 
@@ -136,7 +142,7 @@
 
         input = {
           kb_layout = "ro";
-          natural_scroll = true;
+          natural_scroll = config.hypr.naturalScroll;
         };
 
         exec-once = [

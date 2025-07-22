@@ -1,4 +1,4 @@
-{ pkgs-stable, ... }:
+{ pkgs-stable, lib, ... }:
 {
   boot = {
     kernelPackages = pkgs-stable.linuxPackages_latest;

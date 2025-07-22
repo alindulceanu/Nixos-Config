@@ -29,6 +29,7 @@
       resolution = "1920x1080";
       frequency = "60";
     };
+    naturalScroll = true;
   };
 
   dev.enable = true;

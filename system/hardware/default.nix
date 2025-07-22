@@ -12,5 +12,6 @@
     ./pipewire.nix
     ./pulseaudio.nix
     ./battery.nix
+    ./hibernate.nix
   ];
 }

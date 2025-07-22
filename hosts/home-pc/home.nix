@@ -25,8 +25,17 @@
   dev.enable = true;
   stylix.enableReleaseChecks = false; 
   waybar.enable = true;
-  hypr.enable = true;
   terminals.kitty.enable = true;
+
+  hypr = {
+    enable = true;
+    monitor = {
+      name = "DP-1";
+      resolution = "1920x1080";
+      frequency = "75";
+    };
+    naturalScroll = false;
+  };
 
   home.username = "alin";
   home.homeDirectory = "/home/alin";
