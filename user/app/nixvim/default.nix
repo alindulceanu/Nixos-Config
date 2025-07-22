@@ -51,13 +51,14 @@ in
         enable = true;
 
         sources.formatting = {
-                prettier = { };
-      stylua = { };
-      black = { };
-      clang_format = { };
-      shfmt = { };
+          prettier = { };
+          stylua = { };
+          black = { };
+          clang_format = { };
+          shfmt = { };
         };
       };
+
       telescope = { 
         enable = true;
 
@@ -72,6 +73,19 @@ in
         enable = true;
         settings = {
           check_ts = true;  # Enables Treesitter integration for smarter pairing
+        };
+      };
+
+      toggleterm = {
+        enable = true;
+        settings = {
+          direction = "horizontal";
+          float_opts = {
+            border = "shadow";
+            heights = 30;
+            width = 130;
+          };
+          open_mapping = "[[<c-\\>]]";
         };
       };
 
@@ -156,6 +170,7 @@ in
         servers = {
           nil_ls.enable = true;
           bashls.enable = true;
+          ts_ls.enable = true;
           pyright.enable = true;
         };
       };

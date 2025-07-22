@@ -8,5 +8,6 @@
     ./terminal
     ./waybar
     ./dev
+    ./tmux
   ];
 }

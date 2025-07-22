@@ -15,12 +15,11 @@ in
     initContent = ''
       [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
       fastfetch
+      eval "$(direnv hook zsh)"
     '';
     enableCompletion = true;
-    # autosuggestions.enable = true;
     syntaxHighlighting.enable = true;
     shellAliases = aliases;
-    # promptInit = "source ${pkgs.zsh-powerlevel10k}/share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
     plugins = [
       {
         name = "powerlevel10k-config";
