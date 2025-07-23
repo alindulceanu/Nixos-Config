@@ -125,7 +125,6 @@
     home.packages = with pkgs; [
       fuzzel
       kdePackages.dolphin
-      hyprlock
       ranger
       hyprpaper
       (flameshot.override { enableWlrSupport = true; })
