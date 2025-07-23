@@ -156,6 +156,10 @@
           border_size = 1;
         };
 
+        windowrulev2 = [
+          "opacity 0.0 0.0, class:^(wlogout)$"
+        ];
+
         monitor = "${config.hypr.monitor.name},${config.hypr.monitor.resolution}@${config.hypr.monitor.frequency},1x1,1";
 
         bind = [
