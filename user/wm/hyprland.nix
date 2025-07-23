@@ -128,7 +128,6 @@
       hyprlock
       ranger
       hyprpaper
-      wlogout
       (flameshot.override { enableWlrSupport = true; })
     ];
 

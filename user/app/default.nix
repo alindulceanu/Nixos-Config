@@ -9,5 +9,6 @@
     ./waybar
     ./dev
     ./tmux
+    ./wlogout
   ];
 }
