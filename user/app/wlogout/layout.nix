@@ -1,7 +1,7 @@
 [ 
   {
     "label"= "lock";
-    "action"= "lockscreen.sh";
+    "action"= "hyprlock";
     "text"= "Lock";
     "keybind"= "l";
   }

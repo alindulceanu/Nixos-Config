@@ -39,16 +39,17 @@ in
 #      backend = "pulseaudio";
 #    };
 
+    hibernate = {
+      enable = true;
+      swapOffset = "10467328";
+      rootPath = config.fileSystems."/".device; 
+    };
+
     settings = {
       timezone = "Europe/Bucharest";
       locale = "en_US.UTF-8";
     };
     
-    swapDevices = [{
-      device = "/.swapfile";
-      size = 8192;
-    }];
-
     networking = {
       enable = true;
       proxyUrl = null;

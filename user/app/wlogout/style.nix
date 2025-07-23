@@ -6,19 +6,19 @@ let
 
   icon_color = if ( polarity == "dark" ) then "black" else "white";
 
-  fntSize = 15;
-  mgn = 10;
-  hvr = 5;
-  button_rad = 8;
-  active_rad = 6;
+  fntSize = "15";
+  mgn = "10";
+  hvr = "5";
+  button_rad = "8";
+  active_rad = "6";
 
   iconPath = ./icons;
-  lockIcon = "${iconPath}/lock_${icon_color}";
-  logoutIcon = "${iconPath}/logout_${icon_color}";
-  hibernateIcon = "${iconPath}/hibernate_${icon_color}";
-  rebootIcon = "${iconPath}/reboot_${icon_color}";
-  shutdownIcon = "${iconPath}/shutdown_${icon_color}";
-  suspendIcon = "${iconPath}/suspend_${icon_color}";
+  lockIcon = "${iconPath}/lock_${icon_color}.png";
+  logoutIcon = "${iconPath}/logout_${icon_color}.png";
+  hibernateIcon = "${iconPath}/hibernate_${icon_color}.png";
+  rebootIcon = "${iconPath}/reboot_${icon_color}.png";
+  shutdownIcon = "${iconPath}/shutdown_${icon_color}.png";
+  suspendIcon = "${iconPath}/suspend_${icon_color}.png";
 in
 ''
 * {
@@ -89,37 +89,37 @@ button:hover#reboot {
 }
 
 #lock {
-    background-image: image(url("ck_${base05}.png"));
+    background-image: image(url("${lockIcon}"));
     border-radius: ${button_rad}px 0px 0px ${button_rad}px;
     margin : ${mgn}px 0px ${mgn}px ${mgn}px;
 }
 
 #logout {
-    background-image: image(url("$HOME/.config/wlogout/icons/logout_${base05}.png"), url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
+    background-image: image(url("${logoutIcon}"), url("/usr/share/wlogout/icons/logout.png"), url("/usr/local/share/wlogout/icons/logout.png"));
     border-radius: 0px 0px 0px 0px;
     margin : ${mgn}px 0px ${mgn}px 0px;
 }
 
 #suspend {
-    background-image: image(url("$HOME/.config/wlogout/icons/suspend_${base05}.png"), url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
+    background-image: image(url("${suspendIcon}"), url("/usr/share/wlogout/icons/suspend.png"), url("/usr/local/share/wlogout/icons/suspend.png"));
     border-radius: 0px 0px 0px 0px;
     margin : ${mgn}px 0px ${mgn}px 0px;
 }
 
 #shutdown {
-    background-image: image(url("$HOME/.config/wlogout/icons/shutdown_${base05}.png"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
+    background-image: image(url("${shutdownIcon}"), url("/usr/share/wlogout/icons/shutdown.png"), url("/usr/local/share/wlogout/icons/shutdown.png"));
     border-radius: 0px 0px 0px 0px;
     margin : ${mgn}px 0px ${mgn}px 0px;
 }
 
 #hibernate {
-    background-image: image(url("$HOME/.config/wlogout/icons/hibernate_${base05}.png"), url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
+    background-image: image(url("${hibernateIcon}"), url("/usr/share/wlogout/icons/hibernate.png"), url("/usr/local/share/wlogout/icons/hibernate.png"));
     border-radius: 0px 0px 0px 0px;
     margin : ${mgn}px 0px ${mgn}px 0px;
 }
 
 #reboot {
-    background-image: image(url("$HOME/.config/wlogout/icons/reboot_${base05}.png"), url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
+    background-image: image(url("${rebootIcon}"), url("/usr/share/wlogout/icons/reboot.png"), url("/usr/local/share/wlogout/icons/reboot.png"));
     border-radius: 0px ${button_rad}px ${button_rad}px 0px;
     margin : ${mgn}px ${mgn}px ${mgn}px 0px;
 }

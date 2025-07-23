@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 let
   layout = import ./layout.nix;
-  style = import ./style.nix;
+  style = import ./style.nix { inherit config; };
 in
 {
   home.packages = with pkgs; [
