@@ -85,9 +85,9 @@ in
     services.libinput.enable = true;
 
     # Define a user account. Don't forget to set a password with ‘passwd’.
-    users.users.${systemSettings.username} = {
+    users.users.alin = {
       isNormalUser = true;
-      description = "${systemSettings.username}";
+      description = "alin";
       extraGroups = [ "libvirtd" "networkmanager" "wheel" "audio" "video" ];
       shell = pkgs-stable.zsh;
     };
