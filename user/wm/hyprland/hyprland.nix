@@ -147,6 +147,9 @@
           "hyprpaper"
           "flameshot"
           "waybar"
+          "[workspace 2 silent] firefox"
+          "[workspace 3 silent] zapzap"
+          "[workspace 3 silent] discord"
         ];
 
         general = {
