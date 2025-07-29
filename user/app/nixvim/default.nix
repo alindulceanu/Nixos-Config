@@ -168,6 +168,10 @@ in
           bashls.enable = true;
           ts_ls.enable = true;
           pyright.enable = true;
+          rust_analyzer = {
+            installCargo = false;
+            installRustc = false;
+          };
         };
       };
 
