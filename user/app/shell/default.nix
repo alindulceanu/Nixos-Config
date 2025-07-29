@@ -4,6 +4,7 @@ let
     nrs = "sudo nixos-rebuild switch --flake ~/.dotfiles"; 
     nrb = "sudo nixos-rebuild boot --flake ~/.dotfiles";
     hrs = "home-manager switch --flake ~/.dotfiles";
+    update = "nix flake update --flake ~/.dotfiles && nrs && hrs";
     ".." = "cd ../";
     "...." = "cd ../../";
     "......" = "cd ../../../";
