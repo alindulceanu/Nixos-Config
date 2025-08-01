@@ -22,7 +22,7 @@ clear
 echo "Does partitioning use a suffix? (yes/no)"
 read -r IS_SUFFIX
 
-if [ "$IS_SUFFIX" == "yes" ]; then
+if [ "$IS_SUFFIX" == "no" ]; then
   PART_SUFFIX=""
 else
   echo "insert partition suffix"
