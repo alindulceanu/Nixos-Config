@@ -95,11 +95,11 @@ nixos-install --root "${MOUNT_POINT}" --flake "$MOUNT_POINT/home/$USERNAME/$SCRI
 
 clear
 echo "Enter password for user $USERNAME"
-nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passwd "$USERNAME"
+nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passw "$USERNAME"
 
 clear
 echo "Rebooting system"
-sudo umount -R /mnt
 sleep 5
+sudo umount -R /mnt
 reboot
 
