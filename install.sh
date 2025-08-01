@@ -99,6 +99,7 @@ nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passwd "$USERNAM
 
 clear
 echo "Rebooting system"
+sudo umount -R /mnt
 sleep 5
 reboot
 
