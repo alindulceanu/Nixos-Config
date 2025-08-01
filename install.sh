@@ -42,15 +42,15 @@ if [ "$HOME_PART_CONFIRM" == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
     mkpart primary ext4 100GiB 100%
-  HOME_PART="/dev/${DISK}p3"
+  HOME_PART="/dev/${DISK}3"
   mkfs.ext4 -F "$HOME_PART"
 else
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100%
 fi
 
-EFI_PART="/dev/${DISK}p1"
-ROOT_PART="/dev/${DISK}p2"
+EFI_PART="/dev/${DISK}1"
+ROOT_PART="/dev/${DISK}2"
 
 echo "Formatting partitions!"
 mkfs.fat -F32 "${EFI_PART}"

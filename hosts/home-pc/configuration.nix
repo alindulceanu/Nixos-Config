@@ -88,7 +88,7 @@ in
     users.users.alin = {
       isNormalUser = true;
       description = "alin";
-      extraGroups = [ "libvirtd" "networkmanager" "wheel" "audio" "video" ];
+      extraGroups = [ "libvirtd" "kvm" "wheel" "audio" "video" ];
       shell = pkgs-stable.zsh;
     };
 

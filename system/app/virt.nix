@@ -5,16 +5,20 @@
   };
 
   config = lib.mkIf config.virt.enable {
-    environment.systemPackages = with pkgs-stable; [ podman virt-manager distrobox qemu_kvm ];
-    virtualisation.libvirtd = {
-      allowedBridges = [
-        "br0"
-        "virbr0"
-      ];
-      
-
-      enable = true;
-      qemu.runAsRoot = false;
+    environment.systemPackages = with pkgs-stable; [ podman virt-manager distrobox ];
+    virtualisation = {
+      libvirtd = {
+        enable = true;
+        qemu = {
+          package = pkgs-stable.qemu_kvm;
+          runAsRoot = false;
+          swtpm.enable = true;
+          ovmf = {
+            enable = true;
+            packages = [ pkgs-stable.OVMFFull.fd ];
+          };
+        };
+      };
     };
     virtualisation.podman.enable = true;
   };

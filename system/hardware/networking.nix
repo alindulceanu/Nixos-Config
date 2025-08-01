@@ -1,4 +1,4 @@
-{ lib, config, ... }:
+{ lib, config, pkgs-stable, ... }:
 {
   options = {
     networking.enable = lib.mkEnableOption "enables networking";
@@ -11,8 +11,26 @@
   };
   config = lib.mkIf config.networking.enable ( lib.mkMerge [
     { 
-      networking.hostName = config.systemSettings.hostname; # Define your hostname.
-      networking.networkmanager.enable = true; 
+      environment.systemPackages = with pkgs-stable; [
+        bridge-utils
+        iproute2
+      ];
+
+      networking = {
+        hostName = config.systemSettings.hostname; # Define your hostname.
+        useNetworkd = true;
+        networkmanager.enable = false; 
+        bridges = {
+          br0 = {
+            interfaces = [ "eno1" ];
+          };
+        };
+
+        interfaces = {
+          eno1.useDHCP = false;
+          br0.useDHCP = true;
+        };
+      };
     } 
     
     ( lib.mkIf ( config.networking.proxyUrl != null ) {
