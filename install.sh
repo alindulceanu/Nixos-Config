@@ -106,7 +106,7 @@ nixos-install --root "${MOUNT_POINT}" --flake "$MOUNT_POINT/home/$USERNAME/$SCRI
 
 clear
 echo "Enter password for user $USERNAME"
-nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passw "$USERNAME"
+nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passwd "$USERNAME"
 
 clear
 echo "Rebooting system"
