@@ -21,12 +21,9 @@
       }; 
     };
 
-    lib-stable = inputs.nixpkgs-stable.lib;
-    lib-unstable = inputs.nixpkgs-unstable.lib;
-
   in {
     nixosConfigurations = {
-      home-pc = lib-stable.nixosSystem {
+      home-pc = inputs.nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ 
           ./hosts/home-pc/configuration.nix
@@ -38,7 +35,7 @@
           inherit inputs;
         };
       };
-      laptop = lib-stable.nixosSystem {
+      laptop = inputs.nixpkgs-stable.lib.nixosSystem {
         system = "x86_64-linux";
         modules = [ 
           ./hosts/laptop/configuration.nix
@@ -74,7 +71,8 @@
         };
       };
     };
-   };
+  };
+
   inputs = {
     nixpkgs-stable.url = "nixpkgs/nixos-25.05";
     nixpkgs-unstable.url = "nixpkgs/nixos-unstable";
