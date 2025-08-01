@@ -84,7 +84,7 @@ cp -r ./nixos-config/. "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 clear
 echo "Generating hardware config"
 nixos-generate-config --root "${MOUNT_POINT}"
-cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/hosts/$USERNAME/"
+cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/hosts/$HOSTNAME/"
 cd "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 git add .
 cd ../
