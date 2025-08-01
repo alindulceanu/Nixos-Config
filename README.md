@@ -2,7 +2,7 @@
 
 In order to install it you can use a minimal nixos install running this command inside it:
 
-'''bash
+'''
 nix-shell -p git --run "git clone https://github.com/alindulceanu/nixos-config && sudo bash nixos-config/install.sh"
 '''
 
