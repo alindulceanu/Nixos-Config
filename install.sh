@@ -88,7 +88,6 @@ cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERN
 cd "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 git add .
 cd ../
-sudo chown -R "$USERNAME" "${SCRIPT_DIR}/"
 
 clear
 echo "Building the flake"
