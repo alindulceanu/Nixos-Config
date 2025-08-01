@@ -91,7 +91,7 @@ cd ../
 
 clear
 echo "Building the flake"
-nixos-install --root "${MOUNT_POINT}" --flake "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USERNAME"
+nixos-install --root "${MOUNT_POINT}" --flake "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$HOSTNAME"
 
 clear
 echo "Enter password for user $USERNAME"
