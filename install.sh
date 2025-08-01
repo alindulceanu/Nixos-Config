@@ -38,7 +38,7 @@ sleep 2
 partprobe "/dev/$DISK" || true
 udevadm settle
 
-if [ $HOME_PART_CONFIRM == "yes" ]; then
+if [ "$HOME_PART_CONFIRM" == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
     mkpart primary ext4 100GiB 100%
@@ -64,45 +64,39 @@ mkdir -p "${MOUNT_POINT}/boot"
 mkdir -p "${MOUNT_POINT}/home"
 mount "${EFI_PART}" "${MOUNT_POINT}/boot"
 
-if [ $HOME_PART_CONFIRM == "yes" ]; then
+if [ "$HOME_PART_CONFIRM" == "yes" ]; then
   mount "${HOME_PART}" "${MOUNT_POINT}/home"
 fi
 
 clear
-echo "Enter Hostname"
+echo "Choose Hostname (\"home-pc\" / \"laptop\")"
 read -r HOSTNAME
 
 clear
-echo "Enter Username"
+echo "Choose Username (\"alin\" / \"aln\")"
 read -r USERNAME
 mkdir -p "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
-sed -i "s/hostname = \".*\";/hostname = \"$HOSTNAME\";/" "nixos-config/flake.nix"
-sed -i "s/username = \".*\";/username = \"$USERNAME\";/" "nixos-config/flake.nix"
-
-cd nixos-config
-git diff > user-patch.patch
-cd ../
 
 clear
 echo "Pulling configurations"
 cp -r ./nixos-config/. "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
-mv "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/user-patch.patch" "$MOUNT_POINT/home/$USERNAME/"
 
 clear
 echo "Generating hardware config"
 nixos-generate-config --root "${MOUNT_POINT}"
-cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
+cp "$MOUNT_POINT/etc/nixos/hardware-configuration.nix" "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR/hosts/$USERNAME/"
 cd "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR"
 git add .
-
+cd ../
+sudo chown -R "$USERNAME" "${SCRIPT_DIR}/"
 
 clear
 echo "Building the flake"
-nixos-install --root /mnt --flake "/$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USERNAME"
+nixos-install --root "${MOUNT_POINT}" --flake "$MOUNT_POINT/home/$USERNAME/$SCRIPT_DIR#$USERNAME"
 
 clear
 echo "Enter password for user $USERNAME"
-nixos-enter --root /mnt -- /run/current-system/sw/bin/passwd $USERNAME
+nixos-enter --root "$MOUNT_POINT" -- /run/current-system/sw/bin/passwd "$USERNAME"
 
 clear
 echo "Rebooting system"

@@ -180,7 +180,7 @@
           "$mod SHIFT, L, exec, hyprctl dispatch swapwindow r"
           "$mod SHIFT, K, exec, hyprctl dispatch swapwindow u"
           "$mod SHIFT, J, exec, hyprctl dispatch swapwindow d"
-          "$mod, N, exec, ~/.config/hypr/scripts/toggle-hyprpanel"
+          # "$mod, N, exec, ~/.config/hypr/scripts/toggle-hyprpanel"
         ] ++ 
           (builtins.concatLists (builtins.genList (i:
             let ws = i + 1;
