@@ -19,6 +19,17 @@ echo "Separate home partition? (yes/no)"
 read -r HOME_PART_CONFIRM
 
 clear
+echo "Does partitioning use a suffix? (yes/no)"
+read -r IS_SUFFIX
+
+if [ "$IS_SUFFIX" == "yes" ]; then
+  PART_SUFFIX=""
+else
+  echo "insert partition suffix"
+  read -r PART_SUFFIX
+fi
+
+clear
 echo "This erases ALL data from drive, are you sure? (yes/no)"
 read -r CONFIRM
 
@@ -29,7 +40,7 @@ fi
 
 clear
 echo "Partitioning Disk"
-parted --script "/dev/$DISK" \
+parted --script "/dev/${DISK}" \
   mklabel gpt \
   mkpart ESP fat32 1MiB 512MiB \
   set 1 esp on
@@ -42,15 +53,15 @@ if [ "$HOME_PART_CONFIRM" == "yes" ]; then
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100GiB \
     mkpart primary ext4 100GiB 100%
-  HOME_PART="/dev/${DISK}3"
+  HOME_PART="/dev/${DISK}${PART_SUFFIX}3"
   mkfs.ext4 -F "$HOME_PART"
 else
   parted --script "/dev/$DISK" \
     mkpart primary ext4 512MiB 100%
 fi
 
-EFI_PART="/dev/${DISK}1"
-ROOT_PART="/dev/${DISK}2"
+EFI_PART="/dev/${DISK}${PART_SUFFIX}1"
+ROOT_PART="/dev/${DISK}${PART_SUFFIX}2"
 
 echo "Formatting partitions!"
 mkfs.fat -F32 "${EFI_PART}"
