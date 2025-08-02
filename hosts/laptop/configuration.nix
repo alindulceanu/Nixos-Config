@@ -53,6 +53,10 @@ in
     networking = {
       enable = true;
       proxyUrl = null;
+      bridge = {
+        enable = false;
+        target = "wlp2s0";
+      };
     };
 
     services.dbus.enable = true;
@@ -95,7 +99,7 @@ in
     users.users.${systemSettings.username} = {
       isNormalUser = true;
       description = "${systemSettings.username}";
-      extraGroups = [ "libvirtd" "networkmanager" "wheel" "audio" "video" ];
+      extraGroups = [ "libvirtd" "kvm" "wheel" "audio" "video" ];
       shell = pkgs-stable.zsh;
     };
 
